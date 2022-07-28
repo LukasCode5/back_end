@@ -16,3 +16,15 @@ Content-Type: application/json
 }
 
 ###
+GET  http://127.0.0.1:3000/api/questions
+###
+POST   http://127.0.0.1:3000/api/questions
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1LCJpYXQiOjE2NTkwMTUzODMsImV4cCI6MTY1OTAxODk4M30.piEVD__R3Vuv3_ESHhQT6eP71D4bOcJjcNzemKnLWLA",
+"userId":25,
+"title":"Third test",
+"content":"Test3"
+}
+###

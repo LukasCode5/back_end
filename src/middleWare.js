@@ -48,6 +48,30 @@ async function validateLoginUser(req, res, next) {
     res.status(400).json(formatedError);
   }
 }
+async function validateQuestion(req, res, next) {
+  const schema = Joi.object({
+    // eslint-disable-next-line newline-per-chained-call
+    title: Joi.string().trim().min(5).required(),
+    // eslint-disable-next-line newline-per-chained-call
+    content: Joi.string().trim().min(5).required(),
+  });
+  const { title, content } = req.body;
+  const newQuestion = {
+    title,
+    content,
+  };
+  try {
+    await schema.validateAsync(newQuestion, { abortEarly: false });
+    next();
+  } catch (error) {
+    console.log('schema.validateAsync error in validateQuestion ===', error);
+    const formatedError = error.details.map((errorObj) => ({
+      message: errorObj.message,
+      field: errorObj.path[0],
+    }));
+    res.status(400).json(formatedError);
+  }
+}
 
 async function validateToken(req, res, next) {
   const tokenFromHeaders = req.headers.authorization?.split(' ')[1];
@@ -111,4 +135,5 @@ module.exports = {
   validateLoginUser,
   validateToken,
   validateTokenPost,
+  validateQuestion,
 };

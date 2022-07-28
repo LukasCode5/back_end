@@ -11,7 +11,7 @@ POST  http://127.0.0.1:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email":"mantas@gmail.com",
+    "email":"rokas@gmail.com",
     "password":"secret123"
 }
 
@@ -22,9 +22,19 @@ POST   http://127.0.0.1:3000/api/questions
 Content-Type: application/json
 
 {
-"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1LCJpYXQiOjE2NTkwMTUzODMsImV4cCI6MTY1OTAxODk4M30.piEVD__R3Vuv3_ESHhQT6eP71D4bOcJjcNzemKnLWLA",
-"userId":25,
-"title":"Third test",
-"content":"Test3"
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyMzI1MSwiZXhwIjoxNjU5MDI2ODUxfQ.hGXq-p_aldnqxxke0Cb1wXmmapENTm_h_-opkI7U3SY",
+"userId":5,
+"title":"Rokas test",
+"content":"Rokas test"
+}
+###
+PATCH http://127.0.0.1:3000/api/questions/5
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyMzQ1MiwiZXhwIjoxNjU5MDI3MDUyfQ.NKarWcAGo9gCPDalFwUdAQXy2AAkUoJnx7vEy3UvkpM",
+"userId":5,
+"title":"Fourth test Patched",
+"content":"Test4 Patched"
 }
 ###

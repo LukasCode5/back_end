@@ -1,4 +1,4 @@
-const { getQuestionsDb, postQuestionDb } = require('../models/questionsModels');
+const { getQuestionsDb, postQuestionDb, patchQuestionDb } = require('../models/questionsModels');
 
 async function getQuestions(req, res) {
   try {
@@ -31,7 +31,37 @@ async function postQuestion(req, res) {
   }
 }
 
+async function patchQuestion(req, res) {
+  const { userId, title, content } = req.body;
+  const questionId = +req.params.questionId;
+  console.log('userId ===', userId);
+  console.log('title ===', title);
+  console.log('content ===', content);
+  console.log('questionId ===', questionId);
+  try {
+    const patchQuestionResult = await patchQuestionDb(userId, questionId, title, content);
+    console.log('patchQuestionResult ===', patchQuestionResult);
+    if (!patchQuestionResult.success && patchQuestionResult.empty) {
+      res.status(400).json({ success: false, message: 'Question not found' });
+      return;
+    }
+    if (!patchQuestionResult.success && patchQuestionResult.unauthorized) {
+      res.status(400).json({ success: false, message: 'Access forbidden' });
+      return;
+    }
+    if (!patchQuestionResult.success) {
+      res.status(400).json({ success: false, message: 'Failed to update question' });
+      return;
+    }
+    res.status(201).json({ success: true, result: 'Question successfully updated' });
+  } catch (error) {
+    console.log('error in getQuestions ===', error);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
+  }
+}
+
 module.exports = {
   getQuestions,
   postQuestion,
+  patchQuestion,
 };

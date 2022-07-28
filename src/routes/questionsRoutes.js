@@ -11,12 +11,13 @@ const {
 const questionsRoutes = express.Router();
 
 questionsRoutes.get('/questions', controller.getQuestions);
-questionsRoutes.post('/questions', validateTokenPost, validateQuestion, controller.postQuestion);
+questionsRoutes.post('/questions', validateToken, validateQuestion, controller.postQuestion);
 questionsRoutes.patch(
   '/questions/:questionId',
-  validateTokenPost,
+  validateToken,
   validateQuestion,
   controller.patchQuestion
 );
+questionsRoutes.delete('/questions/:questionId', validateToken, controller.deleteQuestion);
 
 module.exports = questionsRoutes;

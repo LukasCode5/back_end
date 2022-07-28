@@ -18,23 +18,23 @@ Content-Type: application/json
 ###
 GET  http://127.0.0.1:3000/api/questions
 ###
-POST   http://127.0.0.1:3000/api/questions
+POST http://127.0.0.1:3000/api/questions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
 Content-Type: application/json
 
 {
-"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyMzI1MSwiZXhwIjoxNjU5MDI2ODUxfQ.hGXq-p_aldnqxxke0Cb1wXmmapENTm_h_-opkI7U3SY",
-"userId":5,
-"title":"Rokas test",
-"content":"Rokas test"
+"title":"Rokas test auth",
+"content":"Rokas test auth"
 }
 ###
-PATCH http://127.0.0.1:3000/api/questions/5
+PATCH http://127.0.0.1:3000/api/questions/7
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
 Content-Type: application/json
 
 {
-"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyMzQ1MiwiZXhwIjoxNjU5MDI3MDUyfQ.NKarWcAGo9gCPDalFwUdAQXy2AAkUoJnx7vEy3UvkpM",
-"userId":5,
-"title":"Fourth test Patched",
-"content":"Test4 Patched"
+"title":"Fourth test Patched auth",
+"content":"Test4 Patched auth"
 }
 ###
+DELETE  http://127.0.0.1:3000/api/questions/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTU0OSwiZXhwIjoxNjU5MDMzMTQ5fQ.bwq-NGJPl40MI2BA9smKvsTH44CxRktX0EfJRqXXyko

@@ -66,9 +66,33 @@ async function patchQuestionDb(userId, questionId, title, content) {
     throw error;
   }
 }
+async function deleteQuestionDb(userId, questionId) {
+  try {
+    const verifyUserSql = 'SELECT * FROM questions WHERE id = ?';
+    const foundQuestionResult = await executeDb(verifyUserSql, [questionId]);
+    if (foundQuestionResult.length === 0) {
+      return { success: false, empty: true };
+    }
+    if (foundQuestionResult[0].user_id !== userId) {
+      return { success: false, unauthorized: true };
+    }
+
+    const sql = 'DELETE FROM questions WHERE id = ?';
+    const deleteQuestionResult = await executeDb(sql, [questionId]);
+    console.log('deleteQuestionResult  ===', deleteQuestionResult);
+    if (deleteQuestionResult.affectedRows === 0) {
+      return { success: false };
+    }
+    return { success: true };
+  } catch (error) {
+    console.log('error in deleteQuestionsDb ===', error);
+    throw error;
+  }
+}
 
 module.exports = {
   getQuestionsDb,
   postQuestionDb,
   patchQuestionDb,
+  deleteQuestionDb,
 };

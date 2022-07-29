@@ -1,4 +1,4 @@
-const { getAnswersDb, postAnswerDb } = require('../models/answersModels');
+const { getAnswersDb, postAnswerDb, patchAnswerDb } = require('../models/answersModels');
 
 async function getAnswers(req, res) {
   const questionId = +req.params.questionId;
@@ -45,8 +45,41 @@ async function postAnswer(req, res) {
     res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
+async function patchAnswer(req, res) {
+  const { userId, content } = req.body;
+  const answerId = +req.params.answerId;
+
+  if (!userId || !answerId) {
+    res.status(400).json({ success: false, message: 'Missing data' });
+    return;
+  }
+
+  console.log('answerId ===', answerId);
+  try {
+    const postAnswerResult = await patchAnswerDb(userId, answerId, content);
+    console.log('postAnswerResult ===', postAnswerResult);
+
+    if (!postAnswerResult.success && postAnswerResult.empty) {
+      res.status(400).json({ success: false, message: 'Answer not found' });
+      return;
+    }
+    if (!postAnswerResult.success && postAnswerResult.unauthorized) {
+      res.status(400).json({ success: false, message: 'Access forbidden' });
+      return;
+    }
+    if (!postAnswerResult.success) {
+      res.status(400).json({ success: false, message: 'Failed to update Answer' });
+      return;
+    }
+    res.status(201).json({ success: true, result: 'Answer successfully updated' });
+  } catch (error) {
+    console.log('error in postAnswer ===', error);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
+  }
+}
 
 module.exports = {
   getAnswers,
   postAnswer,
+  patchAnswer,
 };

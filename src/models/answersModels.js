@@ -40,7 +40,35 @@ async function postAnswerDb(userId, questionId, content) {
   }
 }
 
+async function patchAnswerDb(userId, answerId, content) {
+  try {
+    const verifyUserSql = 'SELECT * FROM answers WHERE id = ?';
+    const foundAnswerResult = await executeDb(verifyUserSql, [answerId]);
+    if (foundAnswerResult.length === 0) {
+      return { success: false, empty: true };
+    }
+    if (foundAnswerResult[0].user_id !== userId) {
+      return { success: false, unauthorized: true };
+    }
+
+    const sql = `UPDATE answers
+    SET content = ?
+    WHERE id = ?
+    `;
+    const patchAnswerResult = await executeDb(sql, [content, answerId]);
+    console.log('patchAnswerResult  ===', patchAnswerResult);
+    if (patchAnswerResult.affectedRows === 0) {
+      return { success: false };
+    }
+    return { success: true };
+  } catch (error) {
+    console.log('error in patchAnswerDb ===', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getAnswersDb,
   postAnswerDb,
+  patchAnswerDb,
 };

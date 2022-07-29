@@ -10,7 +10,7 @@ async function getQuestions(req, res) {
     const allQuestions = await getQuestionsDb();
     console.log('allQuestions ===', allQuestions);
     if (allQuestions.length === 0) {
-      res.status(400).json({ success: false, message: 'No questions found' });
+      res.status(400).json({ success: false, message: 'No Questions found' });
       return;
     }
     res.status(200).json({ success: true, result: allQuestions });
@@ -31,7 +31,7 @@ async function postQuestion(req, res) {
     const postQuestionResult = await postQuestionDb(userId, title, content);
     console.log('postQuestionResult ===', postQuestionResult);
     if (!postQuestionResult.success) {
-      res.status(400).json({ success: false, message: 'Failed to add question' });
+      res.status(400).json({ success: false, message: 'Failed to add Question' });
       return;
     }
     res.status(201).json({ success: true, result: 'Question successfully added' });
@@ -68,7 +68,7 @@ async function patchQuestion(req, res) {
       return;
     }
     if (!patchQuestionResult.success) {
-      res.status(400).json({ success: false, message: 'Failed to update question' });
+      res.status(400).json({ success: false, message: 'Failed to update Question' });
       return;
     }
     res.status(201).json({ success: true, result: 'Question successfully updated' });
@@ -77,6 +77,7 @@ async function patchQuestion(req, res) {
     res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
+
 async function deleteQuestion(req, res) {
   const { userId } = req.body;
   const questionId = +req.params.questionId;
@@ -100,7 +101,7 @@ async function deleteQuestion(req, res) {
       return;
     }
     if (!deleteQuestionResult.success) {
-      res.status(400).json({ success: false, message: 'Failed to delete question' });
+      res.status(400).json({ success: false, message: 'Failed to delete Question' });
       return;
     }
     res.status(200).json({ success: true, result: 'Question successfully deleted' });

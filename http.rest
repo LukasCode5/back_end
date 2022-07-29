@@ -55,3 +55,12 @@ Content-Type: application/json
     "content":"All is good, post answer route works please :3 333?"
 }
 ###
+
+PATCH http://127.0.0.1:3000/api/answers/100
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTExNDIyMiwiZXhwIjoxNjU5MTE3ODIyfQ.kDjNV0q1ot-vDxx6304m5GZghp6Mkx1YRSpO4jsDSik
+Content-Type: application/json
+
+{
+"content":"Answered patch yes again!!!"
+}
+###

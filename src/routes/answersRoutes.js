@@ -1,11 +1,16 @@
 const express = require('express');
 const controller = require('../controllers/answersController');
-const { validateToken } = require('../middleWare');
+const { validateToken, validateAnswer } = require('../middleWare');
 
 const answersRoutes = express.Router();
 
 answersRoutes.get('/questions/:questionId/answers', controller.getAnswers);
-// answersRoutes.post('/questions', validateToken, validateQuestion, controller.postQuestion);
+answersRoutes.post(
+  '/questions/:questionId/answers',
+  validateToken,
+  validateAnswer,
+  controller.postAnswer
+);
 // answersRoutes.patch(
 //   '/questions/:questionId',
 //   validateToken,

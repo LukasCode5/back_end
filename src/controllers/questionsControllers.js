@@ -22,6 +22,11 @@ async function getQuestions(req, res) {
 
 async function postQuestion(req, res) {
   const { userId, title, content } = req.body;
+
+  if (!userId) {
+    res.status(400).json({ success: false, message: 'Missing data' });
+    return;
+  }
   try {
     const postQuestionResult = await postQuestionDb(userId, title, content);
     console.log('postQuestionResult ===', postQuestionResult);
@@ -39,13 +44,21 @@ async function postQuestion(req, res) {
 async function patchQuestion(req, res) {
   const { userId, title, content } = req.body;
   const questionId = +req.params.questionId;
+
+  if (!userId || !questionId) {
+    res.status(400).json({ success: false, message: 'Missing data' });
+    return;
+  }
+
   console.log('userId ===', userId);
   console.log('title ===', title);
   console.log('content ===', content);
   console.log('questionId ===', questionId);
+
   try {
     const patchQuestionResult = await patchQuestionDb(userId, questionId, title, content);
     console.log('patchQuestionResult ===', patchQuestionResult);
+
     if (!patchQuestionResult.success && patchQuestionResult.empty) {
       res.status(400).json({ success: false, message: 'Question not found' });
       return;
@@ -67,6 +80,12 @@ async function patchQuestion(req, res) {
 async function deleteQuestion(req, res) {
   const { userId } = req.body;
   const questionId = +req.params.questionId;
+
+  if (!userId || !questionId) {
+    res.status(400).json({ success: false, message: 'Missing data' });
+    return;
+  }
+
   console.log('userId ===', userId);
   console.log('questionId ===', questionId);
   try {

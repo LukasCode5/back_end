@@ -25,6 +25,22 @@ async function getAnswersDb(questionId) {
   }
 }
 
+async function postAnswerDb(userId, questionId, content) {
+  try {
+    const sql = 'INSERT INTO answers(user_id, question_id, content) VALUES (?, ?, ?)';
+    const postAnswerResult = await executeDb(sql, [userId, questionId, content]);
+    console.log('postAnswerResult  ===', postAnswerResult);
+    if (postAnswerResult.affectedRows === 0) {
+      return { success: false };
+    }
+    return { success: true };
+  } catch (error) {
+    console.log('error in postAnswerDb ===', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getAnswersDb,
+  postAnswerDb,
 };

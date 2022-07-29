@@ -21,12 +21,12 @@ GET  http://127.0.0.1:3000/api/questions
 ###
 
 POST http://127.0.0.1:3000/api/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwNTE3NiwiZXhwIjoxNjU5MTA4Nzc2fQ.HB9kRqa-87lTZ7il-EzMOTlAlRf0LXGuISxoup2ddXI
 Content-Type: application/json
 
 {
-"title":"Rokas test auth",
-"content":"Rokas test auth"
+"title":"Rokas test auth OK",
+"content":"Rokas test auth OK"
 }
 ###
 
@@ -45,4 +45,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhd
 ###
 
 GET  http://127.0.0.1:3000/api/questions/1/answers
+###
+
+POST  http://127.0.0.1:3000/api/questions/3/answers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwNTE3NiwiZXhwIjoxNjU5MTA4Nzc2fQ.HB9kRqa-87lTZ7il-EzMOTlAlRf0LXGuISxoup2ddXI
+Content-Type: application/json
+
+{
+    "content":"All is good, post answer route works please :3 333?"
+}
 ###

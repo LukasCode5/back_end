@@ -77,12 +77,13 @@ async function deleteQuestionDb(userId, questionId) {
       return { success: false, unauthorized: true };
     }
 
-    const sql = 'DELETE FROM questions WHERE id = ?';
-    const deleteQuestionResult = await executeDb(sql, [questionId]);
+    const sqlDeleteQuestion = 'DROP FROM questions WHERE id = ?';
+    const deleteQuestionResult = await executeDb(sqlDeleteQuestion, [questionId]);
     console.log('deleteQuestionResult  ===', deleteQuestionResult);
     if (deleteQuestionResult.affectedRows === 0) {
       return { success: false };
     }
+
     return { success: true };
   } catch (error) {
     console.log('error in deleteQuestionsDb ===', error);

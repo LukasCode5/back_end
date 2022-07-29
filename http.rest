@@ -7,6 +7,7 @@ Content-Type: application/json
 }
 
 ###
+
 POST  http://127.0.0.1:3000/api/users/login
 Content-Type: application/json
 
@@ -14,10 +15,11 @@ Content-Type: application/json
     "email":"rokas@gmail.com",
     "password":"secret123"
 }
-
 ###
+
 GET  http://127.0.0.1:3000/api/questions
 ###
+
 POST http://127.0.0.1:3000/api/questions
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
 Content-Type: application/json
@@ -27,6 +29,7 @@ Content-Type: application/json
 "content":"Rokas test auth"
 }
 ###
+
 PATCH http://127.0.0.1:3000/api/questions/7
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
 Content-Type: application/json
@@ -36,5 +39,10 @@ Content-Type: application/json
 "content":"Test4 Patched auth"
 }
 ###
-DELETE  http://127.0.0.1:3000/api/questions/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTU0OSwiZXhwIjoxNjU5MDMzMTQ5fQ.bwq-NGJPl40MI2BA9smKvsTH44CxRktX0EfJRqXXyko
+
+DELETE  http://127.0.0.1:3000/api/questions/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwMjY2MCwiZXhwIjoxNjU5MTA2MjYwfQ.FdGlvGECtKIlld8dt2EgW04JlT-OsDEnzQTbKgXpzhU
+###
+
+GET  http://127.0.0.1:3000/api/questions/1/answers
+###

@@ -7,6 +7,7 @@ const usersRoutes = require('./routes/usersRoutes');
 // eslint-disable-next-line no-unused-vars
 const { showBody } = require('./middleWare');
 const questionsRoutes = require('./routes/questionsRoutes');
+const answersRoutes = require('./routes/answersRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(showBody);
 // Routes
 app.use('/api', usersRoutes);
 app.use('/api', questionsRoutes);
+app.use('/api', answersRoutes);
 
 // 404 route
 app.all('*', (req, res) => {

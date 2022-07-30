@@ -1,8 +1,10 @@
+#//////////////////////////////////////////////////LOGIN AND REGISTER ROUTES
+
 POST  http://127.0.0.1:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email":"mantas@gmail.com",
+    "email":"juozas@gmail.com",
     "password":"secret123"
 }
 
@@ -17,25 +19,27 @@ Content-Type: application/json
 }
 ###
 
+#////////////////////////////////////////////////QUESTIONS ROUTES
+
 GET  http://127.0.0.1:3000/api/questions
 ###
 
 POST http://127.0.0.1:3000/api/questions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwNTE3NiwiZXhwIjoxNjU5MTA4Nzc2fQ.HB9kRqa-87lTZ7il-EzMOTlAlRf0LXGuISxoup2ddXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI3LCJpYXQiOjE2NTkxOTYyNDYsImV4cCI6MTY1OTE5OTg0Nn0.UsvDoEjnhJaiXirA5BnTlJIhzZN05ttoLTHJMFY-iuE
 Content-Type: application/json
 
 {
-"title":"Rokas test auth OK",
-"content":"Rokas test auth OK"
+"title":"sdfsdffdsf",
+"content":"asdadsada"
 }
 ###
 
-PATCH http://127.0.0.1:3000/api/questions/7
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTAyOTA1MiwiZXhwIjoxNjU5MDMyNjUyfQ.2y-S9HRw8EYJVD49bFFb2yJx60HD_2uC0q5RORmbnTc
+PATCH http://127.0.0.1:3000/api/questions/10
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI3LCJpYXQiOjE2NTkxOTYyNDYsImV4cCI6MTY1OTE5OTg0Nn0.UsvDoEjnhJaiXirA5BnTlJIhzZN05ttoLTHJMFY-iuE
 Content-Type: application/json
 
 {
-"title":"Fourth test Patched auth",
+"title":"Node sucks sometimes",
 "content":"Test4 Patched auth"
 }
 ###
@@ -56,6 +60,8 @@ Content-Type: application/json
 }
 ###
 
+#//////////////////////////////////////////////////ANSWERS ROUTES
+
 PATCH http://127.0.0.1:3000/api/answers/100
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTExNDIyMiwiZXhwIjoxNjU5MTE3ODIyfQ.kDjNV0q1ot-vDxx6304m5GZghp6Mkx1YRSpO4jsDSik
 Content-Type: application/json
@@ -73,6 +79,11 @@ DELETE  http://127.0.0.1:3000/api/answers/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 ###
 
+#/////////////////////////////////////////////////VOTES ROUTES                                               
+
 GET http://127.0.0.1:3000/api/answers/votes
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE3NDk1OCwiZXhwIjoxNjU5MTc4NTU4fQ.oqIh-zFpTQhcrNAbA4GdcM-gQJRzJvdjJZPIE7nFoJU
+###
+POST  http://127.0.0.1:3000/api/answers/9/votes/down
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTIwMTY5MywiZXhwIjoxNjU5MjA1MjkzfQ.CTTQz6utm9hF_Qob4drGBVaNLrDFxfRPP0Ta_MVhAH0 
 ###

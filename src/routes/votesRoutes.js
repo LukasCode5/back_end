@@ -5,6 +5,6 @@ const { validateToken } = require('../middleWare');
 const votesRoutes = express.Router();
 
 votesRoutes.get('/answers/votes', validateToken, controller.getVotes);
-// votesRoutes.post('/questions/:questionId/answers', validateToken, controller.postAnswer);
+votesRoutes.post('/answers/:answerId/votes/:voteValue', validateToken, controller.postVote);
 
 module.exports = votesRoutes;

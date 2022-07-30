@@ -8,6 +8,7 @@ const usersRoutes = require('./routes/usersRoutes');
 const { showBody } = require('./middleWare');
 const questionsRoutes = require('./routes/questionsRoutes');
 const answersRoutes = require('./routes/answersRoutes');
+const votesRoutes = require('./routes/votesRoutes');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(showBody);
 app.use('/api', usersRoutes);
 app.use('/api', questionsRoutes);
 app.use('/api', answersRoutes);
+app.use('/api', votesRoutes);
 
 // 404 route
 app.all('*', (req, res) => {

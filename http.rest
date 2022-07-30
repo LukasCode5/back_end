@@ -72,3 +72,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhd
 DELETE  http://127.0.0.1:3000/api/answers/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 ###
+
+GET http://127.0.0.1:3000/api/answers/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE3NDk1OCwiZXhwIjoxNjU5MTc4NTU4fQ.oqIh-zFpTQhcrNAbA4GdcM-gQJRzJvdjJZPIE7nFoJU
+###

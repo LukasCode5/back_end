@@ -12,6 +12,7 @@ answersRoutes.post(
   controller.postAnswer
 );
 answersRoutes.patch('/answers/:answerId', validateToken, validateAnswer, controller.patchAnswer);
-// answersRoutes.delete('/questions/:questionId', validateToken, controller.deleteQuestion);
+answersRoutes.delete('/answers/id/:answerId', validateToken, controller.deleteAnswer);
+// answersRoutes.delete('/answers/:questionId', validateToken, controller.deleteAnswers);
 
 module.exports = answersRoutes;

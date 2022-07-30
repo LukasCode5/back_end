@@ -66,6 +66,7 @@ async function patchQuestionDb(userId, questionId, title, content) {
     throw error;
   }
 }
+
 async function deleteQuestionDb(userId, questionId) {
   try {
     const verifyUserSql = 'SELECT * FROM questions WHERE id = ?';
@@ -77,7 +78,7 @@ async function deleteQuestionDb(userId, questionId) {
       return { success: false, unauthorized: true };
     }
 
-    const sqlDeleteQuestion = 'DROP FROM questions WHERE id = ?';
+    const sqlDeleteQuestion = 'DELETE FROM questions WHERE id = ?';
     const deleteQuestionResult = await executeDb(sqlDeleteQuestion, [questionId]);
     console.log('deleteQuestionResult  ===', deleteQuestionResult);
     if (deleteQuestionResult.affectedRows === 0) {

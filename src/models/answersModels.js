@@ -67,8 +67,34 @@ async function patchAnswerDb(userId, answerId, content) {
   }
 }
 
+async function deleteAnswerDb(userId, answerId) {
+  try {
+    const verifyUserSql = 'SELECT * FROM answers WHERE id = ?';
+    const foundAnswerResult = await executeDb(verifyUserSql, [answerId]);
+    if (foundAnswerResult.length === 0) {
+      return { success: false, empty: true };
+    }
+    if (foundAnswerResult[0].user_id !== userId) {
+      return { success: false, unauthorized: true };
+    }
+
+    const sqlDeleteAnswer = 'DELETE FROM answers WHERE id =?';
+    const deleteAnswerResult = await executeDb(sqlDeleteAnswer, [answerId]);
+    console.log('deleteAnswerResult  ===', deleteAnswerResult);
+    if (deleteAnswerResult.affectedRows === 0) {
+      return { success: false };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.log('error in deleteAnswerDb ===', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getAnswersDb,
   postAnswerDb,
   patchAnswerDb,
+  deleteAnswerDb,
 };

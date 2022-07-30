@@ -40,8 +40,8 @@ Content-Type: application/json
 }
 ###
 
-DELETE  http://127.0.0.1:3000/api/questions/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwMjY2MCwiZXhwIjoxNjU5MTA2MjYwfQ.FdGlvGECtKIlld8dt2EgW04JlT-OsDEnzQTbKgXpzhU
+DELETE  http://127.0.0.1:3000/api/questions/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 ###
 
 GET  http://127.0.0.1:3000/api/questions/1/answers
@@ -63,4 +63,8 @@ Content-Type: application/json
 {
 "content":"Answered patch yes again!!!"
 }
+###
+
+DELETE  http://127.0.0.1:3000/api/answers/id/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 ###

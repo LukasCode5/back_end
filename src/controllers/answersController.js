@@ -3,6 +3,7 @@ const {
   postAnswerDb,
   patchAnswerDb,
   deleteAnswerDb,
+  deleteAnswersDb,
 } = require('../models/answersModels');
 
 async function getAnswers(req, res) {
@@ -29,16 +30,18 @@ async function getAnswers(req, res) {
 
 async function postAnswer(req, res) {
   const { userId, content } = req.body;
-  const answerId = +req.params.answerId;
+  const questionId = +req.params.questionId;
 
-  if (!userId || !answerId) {
+  console.log('userId ===', userId);
+  console.log('answerId ===', questionId);
+
+  if (!userId || !questionId) {
     res.status(400).json({ success: false, message: 'Missing data' });
     return;
   }
 
-  console.log('answerId ===', answerId);
   try {
-    const postAnswerResult = await postAnswerDb(userId, answerId, content);
+    const postAnswerResult = await postAnswerDb(userId, questionId, content);
     console.log('postAnswerResult ===', postAnswerResult);
     if (!postAnswerResult.success) {
       res.status(400).json({ success: false, message: 'Failed to add Answer' });
@@ -116,9 +119,43 @@ async function deleteAnswer(req, res) {
   }
 }
 
+async function deleteAnswers(req, res) {
+  const { userId } = req.body;
+  const questionId = +req.params.questionId;
+
+  if (!userId || !questionId) {
+    res.status(400).json({ success: false, message: 'Missing data' });
+    return;
+  }
+
+  console.log('userId ===', userId);
+  console.log('questionId ===', questionId);
+  try {
+    const deleteAnswersResult = await deleteAnswersDb(userId, questionId);
+    console.log('deleteAnswersResult ===', deleteAnswersResult);
+    if (!deleteAnswersResult.success && deleteAnswersResult.empty) {
+      res.status(400).json({ success: false, message: 'Answers not found' });
+      return;
+    }
+    if (!deleteAnswersResult.success && deleteAnswersResult.unauthorized) {
+      res.status(400).json({ success: false, message: 'Access forbidden' });
+      return;
+    }
+    if (!deleteAnswersResult.success) {
+      res.status(400).json({ success: false, message: 'Failed to delete Answers' });
+      return;
+    }
+    res.status(200).json({ success: true, result: 'Answers successfully deleted' });
+  } catch (error) {
+    console.log('error in deleteAnswers  ===', error);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
+  }
+}
+
 module.exports = {
   getAnswers,
   postAnswer,
   patchAnswer,
   deleteAnswer,
+  deleteAnswers,
 };

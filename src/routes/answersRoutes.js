@@ -13,6 +13,6 @@ answersRoutes.post(
 );
 answersRoutes.patch('/answers/:answerId', validateToken, validateAnswer, controller.patchAnswer);
 answersRoutes.delete('/answers/id/:answerId', validateToken, controller.deleteAnswer);
-// answersRoutes.delete('/answers/:questionId', validateToken, controller.deleteAnswers);
+answersRoutes.delete('/answers/:questionId', validateToken, controller.deleteAnswers);
 
 module.exports = answersRoutes;

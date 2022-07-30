@@ -92,9 +92,35 @@ async function deleteAnswerDb(userId, answerId) {
   }
 }
 
+async function deleteAnswersDb(userId, questionId) {
+  try {
+    const verifyAnswersSql = 'SELECT * FROM answers WHERE question_id = ?';
+    const foundAnswersResult = await executeDb(verifyAnswersSql, [questionId]);
+    if (foundAnswersResult.length === 0) {
+      return { success: false, empty: true };
+    }
+    if (foundAnswersResult[0].user_id !== userId) {
+      return { success: false, unauthorized: true };
+    }
+
+    const sqlDeleteAnswers = 'DELETE FROM answers WHERE question_id =?';
+    const deleteAnswersResult = await executeDb(sqlDeleteAnswers, [questionId]);
+    console.log('deleteAnswersResult  ===', deleteAnswersResult);
+    if (deleteAnswersResult.affectedRows === 0) {
+      return { success: false };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.log('error in deleteAnswersDb ===', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getAnswersDb,
   postAnswerDb,
   patchAnswerDb,
   deleteAnswerDb,
+  deleteAnswersDb,
 };

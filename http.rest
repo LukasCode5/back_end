@@ -47,12 +47,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhd
 GET  http://127.0.0.1:3000/api/questions/1/answers
 ###
 
-POST  http://127.0.0.1:3000/api/questions/3/answers
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTEwNTE3NiwiZXhwIjoxNjU5MTA4Nzc2fQ.HB9kRqa-87lTZ7il-EzMOTlAlRf0LXGuISxoup2ddXI
+POST  http://127.0.0.1:3000/api/questions/1/answers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 Content-Type: application/json
 
 {
-    "content":"All is good, post answer route works please :3 333?"
+    "content":"test3"
 }
 ###
 
@@ -65,6 +65,10 @@ Content-Type: application/json
 }
 ###
 
-DELETE  http://127.0.0.1:3000/api/answers/id/8
+DELETE  http://127.0.0.1:3000/api/answers/id/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
+###
+
+DELETE  http://127.0.0.1:3000/api/answers/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
 ###

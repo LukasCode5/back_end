@@ -1,0 +1,92 @@
+#//////////////////////////////////////////////////LOGIN AND REGISTER ROUTES
+
+POST  http://127.0.0.1:3001/api/users/register
+Content-Type: application/json
+
+{
+    "email":"kazys@gmail.com",
+    "password":"secret123"
+}
+
+###
+
+POST  http://127.0.0.1:3001/api/users/login
+Content-Type: application/json
+
+{
+    "email":"josok@gmail.com",
+    "password":"secret123"
+}
+###
+
+#////////////////////////////////////////////////QUESTIONS ROUTES
+
+GET  http://127.0.0.1:3001/api/questions
+###
+
+POST http://127.0.0.1:3001/api/questions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI3LCJpYXQiOjE2NTkxOTYyNDYsImV4cCI6MTY1OTE5OTg0Nn0.UsvDoEjnhJaiXirA5BnTlJIhzZN05ttoLTHJMFY-iuE
+Content-Type: application/json
+
+{
+"title":"sdfsdffdsf",
+"content":"asdadsada"
+}
+###
+
+PATCH http://127.0.0.1:3001/api/questions/10
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI3LCJpYXQiOjE2NTkxOTYyNDYsImV4cCI6MTY1OTE5OTg0Nn0.UsvDoEjnhJaiXirA5BnTlJIhzZN05ttoLTHJMFY-iuE
+Content-Type: application/json
+
+{
+"title":"Node sucks sometimes",
+"content":"Test4 Patched auth"
+}
+###
+
+DELETE  http://127.0.0.1:3001/api/questions/24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMyLCJpYXQiOjE2NTkzNDYyMjcsImV4cCI6MTY1OTM0OTgyN30.j7BDoauD1THmuF4ENRyx9bEW52esFxp3Ua1JlnGuBME
+###
+
+GET  http://127.0.0.1:3001/api/questions/1/answers
+###
+
+POST  http://127.0.0.1:3001/api/questions/1/answers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
+Content-Type: application/json
+
+{
+    "content":"test3"
+}
+###
+
+#//////////////////////////////////////////////////ANSWERS ROUTES
+
+GET http://127.0.0.1:3001/api/questions/answers
+###
+
+PATCH http://127.0.0.1:3001/api/answers/100
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTExNDIyMiwiZXhwIjoxNjU5MTE3ODIyfQ.kDjNV0q1ot-vDxx6304m5GZghp6Mkx1YRSpO4jsDSik
+Content-Type: application/json
+
+{
+"content":"Answered patch yes again!!!"
+}
+###
+
+DELETE  http://127.0.0.1:3001/api/answers/id/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
+###
+
+DELETE  http://127.0.0.1:3001/api/answers/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE2NDgxNCwiZXhwIjoxNjU5MTY4NDE0fQ.VG0SVCaAZkbGnhJz_6Ov4On3Vz_bLdc8QpRNwqNPzU8
+###
+
+#/////////////////////////////////////////////////VOTES ROUTES                                               
+
+GET http://127.0.0.1:3001/api/answers/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTE3NDk1OCwiZXhwIjoxNjU5MTc4NTU4fQ.oqIh-zFpTQhcrNAbA4GdcM-gQJRzJvdjJZPIE7nFoJU
+###
+POST  http://127.0.0.1:3001/api/answers/9/votes/down
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY1OTIwMTY5MywiZXhwIjoxNjU5MjA1MjkzfQ.CTTQz6utm9hF_Qob4drGBVaNLrDFxfRPP0Ta_MVhAH0 
+###

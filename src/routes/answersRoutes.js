@@ -4,6 +4,7 @@ const { validateToken, validateAnswer } = require('../middleWare');
 
 const answersRoutes = express.Router();
 
+answersRoutes.get('/questions/answers', controller.getAllAnswers);
 answersRoutes.get('/questions/:questionId/answers', controller.getAnswers);
 answersRoutes.post(
   '/questions/:questionId/answers',

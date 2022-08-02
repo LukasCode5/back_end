@@ -43,7 +43,11 @@ async function postQuestion(req, res) {
 
 async function patchQuestion(req, res) {
   const { userId, title, content } = req.body;
+  console.log('content ===', content);
+  console.log('title ===', title);
+  console.log('userId ===', userId);
   const questionId = +req.params.questionId;
+  console.log('questionId ===', questionId);
 
   if (!userId || !questionId) {
     res.status(400).json({ success: false, message: 'Missing data' });

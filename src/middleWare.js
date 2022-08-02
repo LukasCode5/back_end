@@ -14,7 +14,7 @@ async function validateUser(req, res, next) {
     // eslint-disable-next-line newline-per-chained-call
     email: Joi.string().trim().email().lowercase().required(),
     // eslint-disable-next-line newline-per-chained-call
-    password: Joi.string().trim().min(5).max(15).required(),
+    password: Joi.string().trim().min(5).max(20).required(),
   });
   try {
     await schema.validateAsync(req.body, { abortEarly: false });
@@ -34,7 +34,7 @@ async function validateLoginUser(req, res, next) {
     // eslint-disable-next-line newline-per-chained-call
     email: Joi.string().trim().email().lowercase().required(),
     // eslint-disable-next-line newline-per-chained-call
-    password: Joi.string().trim().min(5).max(15).required(),
+    password: Joi.string().trim().min(5).max(20).required(),
   });
   try {
     await schema.validateAsync(req.body, { abortEarly: false });
@@ -51,9 +51,9 @@ async function validateLoginUser(req, res, next) {
 async function validateQuestion(req, res, next) {
   const schema = Joi.object({
     // eslint-disable-next-line newline-per-chained-call
-    title: Joi.string().trim().min(5).required(),
+    title: Joi.string().trim().min(5).max(100).required(),
     // eslint-disable-next-line newline-per-chained-call
-    content: Joi.string().trim().min(5).required(),
+    content: Joi.string().trim().min(5).max(600).required(),
   });
   const { title, content } = req.body;
   const newQuestion = {
@@ -75,7 +75,7 @@ async function validateQuestion(req, res, next) {
 async function validateAnswer(req, res, next) {
   const schema = Joi.object({
     // eslint-disable-next-line newline-per-chained-call
-    content: Joi.string().trim().min(5).required(),
+    content: Joi.string().trim().min(5).max(600).required(),
   });
   const { content } = req.body;
   const newAnswer = {
@@ -116,7 +116,9 @@ async function validateToken(req, res, next) {
     console.log('jwt.verify error in validateToken ===', error);
     res.status(403).json({
       success: false,
-      error: 'invalid token',
+      error: {
+        token: 'invalid token',
+      },
     });
   }
 }
@@ -145,7 +147,9 @@ async function validateTokenPost(req, res, next) {
     console.log('jwt.verify error in validateTokenPost ===', error);
     res.status(403).json({
       success: false,
-      error: 'invalid token',
+      error: {
+        token: 'invalid token',
+      },
     });
   }
 }

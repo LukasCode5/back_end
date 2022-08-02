@@ -79,6 +79,7 @@ async function deleteQuestionDb(userId, questionId) {
     }
 
     const sqlDeleteQuestion = 'DELETE FROM questions WHERE id = ?';
+
     const deleteQuestionResult = await executeDb(sqlDeleteQuestion, [questionId]);
     console.log('deleteQuestionResult  ===', deleteQuestionResult);
     if (deleteQuestionResult.affectedRows === 0) {

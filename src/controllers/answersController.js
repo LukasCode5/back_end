@@ -4,18 +4,34 @@ const {
   patchAnswerDb,
   deleteAnswerDb,
   deleteAnswersDb,
+  getAllAnswersDb,
 } = require('../models/answersModels');
 
-async function getAnswers(req, res) {
-  const answerId = +req.params.answerId;
+async function getAllAnswers(req, res) {
+  try {
+    const allAnswers = await getAllAnswersDb();
+    console.log('allQuestions ===', allAnswers);
+    if (allAnswers.length === 0) {
+      res.status(400).json({ success: false, message: 'No Answers found' });
+      return;
+    }
+    res.status(200).json({ success: true, result: allAnswers });
+  } catch (error) {
+    console.log('error in getAnswers ===', error);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
+  }
+}
 
-  if (!answerId) {
+async function getAnswers(req, res) {
+  const questionId = +req.params.questionId;
+
+  if (!questionId) {
     res.status(400).json({ success: false, message: 'Missing data' });
     return;
   }
 
   try {
-    const allAnswers = await getAnswersDb(answerId);
+    const allAnswers = await getAnswersDb(questionId);
     console.log('allQuestions ===', allAnswers);
     if (allAnswers.length === 0) {
       res.status(400).json({ success: false, message: 'No Answers found' });
@@ -158,4 +174,5 @@ module.exports = {
   patchAnswer,
   deleteAnswer,
   deleteAnswers,
+  getAllAnswers,
 };

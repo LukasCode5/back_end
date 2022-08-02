@@ -15,6 +15,15 @@ async function executeDb(sql, dataToDbArray = []) {
   }
 }
 
+async function getAllAnswersDb() {
+  try {
+    const sql = 'SELECT * FROM answers';
+    return executeDb(sql);
+  } catch (error) {
+    console.log('error in getAllAnswersDb ===', error);
+    throw error;
+  }
+}
 async function getAnswersDb(questionId) {
   try {
     const sql = 'SELECT * FROM answers WHERE question_id=?';
@@ -123,4 +132,5 @@ module.exports = {
   patchAnswerDb,
   deleteAnswerDb,
   deleteAnswersDb,
+  getAllAnswersDb,
 };

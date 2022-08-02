@@ -41,8 +41,8 @@ async function postVoteDb(userId, answerId, voteValue) {
       const foundVoteUserResult = answerVotesResult.find((voteObj) => voteObj.user_id === userId);
 
       if (foundVoteUserResult) {
-        console.log('foundVoteUserResult.value ===', foundVoteUserResult.value);
-        console.log('voteValue ===', voteValue);
+        // console.log('foundVoteUserResult.value ===', foundVoteUserResult.value);
+        // console.log('voteValue ===', voteValue);
         if (foundVoteUserResult.value === voteValue) return { duplicate: true };
 
         const sqlUpdateUserVote = `UPDATE votes
@@ -58,26 +58,42 @@ async function postVoteDb(userId, answerId, voteValue) {
         if (updateUserVoteResult.affectedRows === 0) {
           return { success: false };
         }
-      } else {
-        const sqlAddUserVote = 'INSERT INTO votes(user_id,answer_id, value) VALUES (?, ?, ?)';
-        const addUserVote = await executeDb(sqlAddUserVote, [userId, answerId, voteValue]);
+        // eslint-disable-next-line operator-linebreak
+        const sqlAnswerVoteAdd =
+          voteValue === 1
+            ? `UPDATE answers
+      SET votes = votes + ${1}
+      WHERE id = ?
+  `
+            : `UPDATE answers
+      SET votes = votes - ${1}
+      WHERE id = ?`;
 
-        if (addUserVote.affectedRows === 0) {
+        const answerVoteAddResult = await executeDb(sqlAnswerVoteAdd, [answerId]);
+        if (answerVoteAddResult.affectedRows === 0) {
           return { success: false };
         }
+        return { success: true };
       }
+    }
+    const sqlAddUserVote = 'INSERT INTO votes(user_id,answer_id, value) VALUES (?, ?, ?)';
+    const addUserVote = await executeDb(sqlAddUserVote, [userId, answerId, voteValue]);
+    // console.log('addUserVote ===', addUserVote);
+
+    if (addUserVote.affectedRows === 0) {
+      return { success: false };
     }
 
     // eslint-disable-next-line operator-linebreak
     const sqlAnswerVoteAdd =
       voteValue === 1
         ? `UPDATE answers
-        SET votes = votes + ${1}
-        WHERE id = ?
-    `
+ SET votes = votes + ${1}
+ WHERE id = ?
+`
         : `UPDATE answers
-        SET votes = votes - ${1}
-        WHERE id = ?`;
+ SET votes = votes - ${1}
+ WHERE id = ?`;
 
     const answerVoteAddResult = await executeDb(sqlAnswerVoteAdd, [answerId]);
     if (answerVoteAddResult.affectedRows === 0) {

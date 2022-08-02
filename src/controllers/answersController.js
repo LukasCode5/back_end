@@ -10,7 +10,7 @@ const {
 async function getAllAnswers(req, res) {
   try {
     const allAnswers = await getAllAnswersDb();
-    console.log('allQuestions ===', allAnswers);
+    // console.log('allQuestions ===', allAnswers);
     if (allAnswers.length === 0) {
       res.status(400).json({ success: false, message: 'No Answers found' });
       return;
@@ -32,7 +32,7 @@ async function getAnswers(req, res) {
 
   try {
     const allAnswers = await getAnswersDb(questionId);
-    console.log('allQuestions ===', allAnswers);
+    // console.log('allQuestions ===', allAnswers);
     if (allAnswers.length === 0) {
       res.status(400).json({ success: false, message: 'No Answers found' });
       return;
@@ -48,8 +48,8 @@ async function postAnswer(req, res) {
   const { userId, content } = req.body;
   const questionId = +req.params.questionId;
 
-  console.log('userId ===', userId);
-  console.log('answerId ===', questionId);
+  // console.log('userId ===', userId);
+  // console.log('answerId ===', questionId);
 
   if (!userId || !questionId) {
     res.status(400).json({ success: false, message: 'Missing data' });
@@ -58,7 +58,7 @@ async function postAnswer(req, res) {
 
   try {
     const postAnswerResult = await postAnswerDb(userId, questionId, content);
-    console.log('postAnswerResult ===', postAnswerResult);
+    // console.log('postAnswerResult ===', postAnswerResult);
     if (!postAnswerResult.success) {
       res.status(400).json({ success: false, message: 'Failed to add Answer' });
       return;
@@ -78,10 +78,10 @@ async function patchAnswer(req, res) {
     return;
   }
 
-  console.log('answerId ===', answerId);
+  // console.log('answerId ===', answerId);
   try {
     const postAnswerResult = await patchAnswerDb(userId, answerId, content);
-    console.log('postAnswerResult ===', postAnswerResult);
+    // console.log('postAnswerResult ===', postAnswerResult);
 
     if (!postAnswerResult.success && postAnswerResult.empty) {
       res.status(400).json({ success: false, message: 'Answer not found' });
@@ -111,11 +111,11 @@ async function deleteAnswer(req, res) {
     return;
   }
 
-  console.log('userId ===', userId);
-  console.log('answerId ===', answerId);
+  // console.log('userId ===', userId);
+  // console.log('answerId ===', answerId);
   try {
     const deleteAnswerResult = await deleteAnswerDb(userId, answerId);
-    console.log('deleteAnswerResult ===', deleteAnswerResult);
+    // console.log('deleteAnswerResult ===', deleteAnswerResult);
     if (!deleteAnswerResult.success && deleteAnswerResult.empty) {
       res.status(400).json({ success: false, message: 'Answer not found' });
       return;
@@ -144,11 +144,11 @@ async function deleteAnswers(req, res) {
     return;
   }
 
-  console.log('userId ===', userId);
-  console.log('questionId ===', questionId);
+  // console.log('userId ===', userId);
+  // console.log('questionId ===', questionId);
   try {
     const deleteAnswersResult = await deleteAnswersDb(userId, questionId);
-    console.log('deleteAnswersResult ===', deleteAnswersResult);
+    // console.log('deleteAnswersResult ===', deleteAnswersResult);
     if (!deleteAnswersResult.success && deleteAnswersResult.empty) {
       res.status(400).json({ success: false, message: 'Answers not found' });
       return;

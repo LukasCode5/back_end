@@ -29,7 +29,7 @@ async function postQuestionDb(userId, title, content) {
   try {
     const sql = 'INSERT INTO questions(user_id, title, content) VALUES (?, ?, ?)';
     const postQuestionResult = await executeDb(sql, [userId, title, content]);
-    console.log('postQuestionResult  ===', postQuestionResult);
+    // console.log('postQuestionResult  ===', postQuestionResult);
     if (postQuestionResult.affectedRows === 0) {
       return { success: false };
     }
@@ -56,7 +56,7 @@ async function patchQuestionDb(userId, questionId, title, content) {
     WHERE id = ?
     `;
     const patchQuestionResult = await executeDb(sql, [title, content, questionId]);
-    console.log('patchQuestionResult  ===', patchQuestionResult);
+    // console.log('patchQuestionResult  ===', patchQuestionResult);
     if (patchQuestionResult.affectedRows === 0) {
       return { success: false };
     }
@@ -81,7 +81,7 @@ async function deleteQuestionDb(userId, questionId) {
     const sqlDeleteQuestion = 'DELETE FROM questions WHERE id = ?';
 
     const deleteQuestionResult = await executeDb(sqlDeleteQuestion, [questionId]);
-    console.log('deleteQuestionResult  ===', deleteQuestionResult);
+    // console.log('deleteQuestionResult  ===', deleteQuestionResult);
     if (deleteQuestionResult.affectedRows === 0) {
       return { success: false };
     }

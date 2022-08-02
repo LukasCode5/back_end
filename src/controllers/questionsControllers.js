@@ -8,7 +8,7 @@ const {
 async function getQuestions(req, res) {
   try {
     const allQuestions = await getQuestionsDb();
-    console.log('allQuestions ===', allQuestions);
+    // console.log('allQuestions ===', allQuestions);
     if (allQuestions.length === 0) {
       res.status(400).json({ success: false, message: 'No Questions found' });
       return;
@@ -29,7 +29,7 @@ async function postQuestion(req, res) {
   }
   try {
     const postQuestionResult = await postQuestionDb(userId, title, content);
-    console.log('postQuestionResult ===', postQuestionResult);
+    // console.log('postQuestionResult ===', postQuestionResult);
     if (!postQuestionResult.success) {
       res.status(400).json({ success: false, message: 'Failed to add Question' });
       return;
@@ -43,25 +43,25 @@ async function postQuestion(req, res) {
 
 async function patchQuestion(req, res) {
   const { userId, title, content } = req.body;
-  console.log('content ===', content);
-  console.log('title ===', title);
-  console.log('userId ===', userId);
+  // console.log('content ===', content);
+  // console.log('title ===', title);
+  // console.log('userId ===', userId);
   const questionId = +req.params.questionId;
-  console.log('questionId ===', questionId);
+  // console.log('questionId ===', questionId);
 
   if (!userId || !questionId) {
     res.status(400).json({ success: false, message: 'Missing data' });
     return;
   }
 
-  console.log('userId ===', userId);
-  console.log('title ===', title);
-  console.log('content ===', content);
-  console.log('questionId ===', questionId);
+  // console.log('userId ===', userId);
+  // console.log('title ===', title);
+  // console.log('content ===', content);
+  // console.log('questionId ===', questionId);
 
   try {
     const patchQuestionResult = await patchQuestionDb(userId, questionId, title, content);
-    console.log('patchQuestionResult ===', patchQuestionResult);
+    // console.log('patchQuestionResult ===', patchQuestionResult);
 
     if (!patchQuestionResult.success && patchQuestionResult.empty) {
       res.status(400).json({ success: false, message: 'Question not found' });
@@ -91,11 +91,11 @@ async function deleteQuestion(req, res) {
     return;
   }
 
-  console.log('userId ===', userId);
-  console.log('questionId ===', questionId);
+  // console.log('userId ===', userId);
+  // console.log('questionId ===', questionId);
   try {
     const deleteQuestionResult = await deleteQuestionDb(userId, questionId);
-    console.log('deleteQuestionResult ===', deleteQuestionResult);
+    // console.log('deleteQuestionResult ===', deleteQuestionResult);
     if (!deleteQuestionResult.success && deleteQuestionResult.empty) {
       res.status(400).json({ success: false, message: 'Question not found' });
       return;

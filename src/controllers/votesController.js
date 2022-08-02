@@ -10,7 +10,7 @@ async function getVotes(req, res) {
 
   try {
     const allUsersVotes = await getVotesDb();
-    console.log('allUsersVotes ===', allUsersVotes);
+    // console.log('allUsersVotes ===', allUsersVotes);
     if (allUsersVotes.length === 0) {
       res.status(400).json({ success: false, message: 'No Votes found' });
       return;
@@ -34,14 +34,14 @@ async function postVote(req, res) {
     return;
   }
 
-  console.log('userId ===', userId);
-  console.log('questionId ===', answerId);
-  console.log('voteValue ===', voteValue);
-  console.log('finalVote ===', finalVote);
+  // console.log('userId ===', userId);
+  // console.log('questionId ===', answerId);
+  // console.log('voteValue ===', voteValue);
+  // console.log('finalVote ===', finalVote);
 
   try {
     const postVoteResult = await postVoteDb(userId, answerId, finalVote);
-    console.log('postVoteResult ===', postVoteResult);
+    // console.log('postVoteResult ===', postVoteResult);
 
     if (!postVoteResult.success && postVoteResult.empty) {
       res.status(400).json({ success: false, message: 'Answer not found' });

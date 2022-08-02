@@ -38,7 +38,7 @@ async function postAnswerDb(userId, questionId, content) {
   try {
     const sql = 'INSERT INTO answers(user_id, question_id, content) VALUES (?, ?, ?)';
     const postAnswerResult = await executeDb(sql, [userId, questionId, content]);
-    console.log('postAnswerResult  ===', postAnswerResult);
+    // console.log('postAnswerResult  ===', postAnswerResult);
     if (postAnswerResult.affectedRows === 0) {
       return { success: false };
     }
@@ -65,7 +65,7 @@ async function patchAnswerDb(userId, answerId, content) {
     WHERE id = ?
     `;
     const patchAnswerResult = await executeDb(sql, [content, answerId]);
-    console.log('patchAnswerResult  ===', patchAnswerResult);
+    // console.log('patchAnswerResult  ===', patchAnswerResult);
     if (patchAnswerResult.affectedRows === 0) {
       return { success: false };
     }
@@ -89,7 +89,7 @@ async function deleteAnswerDb(userId, answerId) {
 
     const sqlDeleteAnswer = 'DELETE FROM answers WHERE id =?';
     const deleteAnswerResult = await executeDb(sqlDeleteAnswer, [answerId]);
-    console.log('deleteAnswerResult  ===', deleteAnswerResult);
+    // console.log('deleteAnswerResult  ===', deleteAnswerResult);
     if (deleteAnswerResult.affectedRows === 0) {
       return { success: false };
     }
@@ -114,7 +114,7 @@ async function deleteAnswersDb(userId, questionId) {
 
     const sqlDeleteAnswers = 'DELETE FROM answers WHERE question_id =?';
     const deleteAnswersResult = await executeDb(sqlDeleteAnswers, [questionId]);
-    console.log('deleteAnswersResult  ===', deleteAnswersResult);
+    // console.log('deleteAnswersResult  ===', deleteAnswersResult);
     if (deleteAnswersResult.affectedRows === 0) {
       return { success: false };
     }
